@@ -329,6 +329,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 }
             }
+            System.out.println("Posição seletor: " + ladderMatrix.getSelectorPosi());
             return;
         }
         else {
@@ -367,6 +368,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 }
             }
+            System.out.println("Posição seletor: " + ladderMatrix.getSelectorPosi());
         }
     }
 
