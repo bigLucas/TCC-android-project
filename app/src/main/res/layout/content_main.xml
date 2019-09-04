@@ -59,91 +59,42 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/slot1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/no_contact_selection" />
-
-            <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/slot2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/slot3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/slot4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/no_contact" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/slot5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/no_contact" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/contact_nc_selection" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/no_contact" />
-
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/no_contact" />
-
-            <ImageView
-                android:id="@+id/imageView12"
+                android:id="@+id/slot6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -157,42 +108,42 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/contact_selection" />
-
-            <ImageView
-                android:id="@+id/imageView13"
+                android:id="@+id/slot7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView14"
+                android:id="@+id/slot8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/contact_nc" />
+                app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/slot9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/contact" />
+                app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView16"
+                android:id="@+id/slot10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/contact" />
+                app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView17"
+                android:id="@+id/slot11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -206,46 +157,46 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView18"
+                android:id="@+id/slot13"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView19"
+                android:id="@+id/slot14"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView20"
+                android:id="@+id/slot15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/slot16"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView22"
+                android:id="@+id/slot17"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView23"
+                android:id="@+id/slot18"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/contact_nc" />
+                app:srcCompat="@drawable/no_contact" />
         </LinearLayout>
 
         <LinearLayout
@@ -255,46 +206,46 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView24"
+                android:id="@+id/slot19"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView25"
+                android:id="@+id/slot20"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView26"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/contact_selection" />
-
-            <ImageView
-                android:id="@+id/imageView27"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/contact_nc_selection" />
-
-            <ImageView
-                android:id="@+id/imageView28"
+                android:id="@+id/slot21"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView29"
+                android:id="@+id/slot22"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/contact_nc_selection" />
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot23"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot24"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
         </LinearLayout>
 
         <LinearLayout
@@ -304,46 +255,95 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView30"
+                android:id="@+id/slot25"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView31"
+                android:id="@+id/slot26"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView32"
+                android:id="@+id/slot27"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView33"
+                android:id="@+id/slot28"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView34"
+                android:id="@+id/slot29"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/no_contact" />
 
             <ImageView
-                android:id="@+id/imageView35"
+                android:id="@+id/slot30"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/no_contact_selection" />
+                app:srcCompat="@drawable/no_contact" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/slot31"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot32"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot33"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot34"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot35"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
+
+            <ImageView
+                android:id="@+id/slot36"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/no_contact" />
         </LinearLayout>
     </LinearLayout>
 
