@@ -6,7 +6,7 @@ public class LadderMatrix {
 
     public LadderMatrix() {
         // Maxima posição para seletor é 36, quando ele etá em 37, significa que é null
-        selectorPosi = 37;
+        selectorPosi = 0;
     }
 
     /**
