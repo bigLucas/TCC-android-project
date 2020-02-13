@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tcc_pro_v02">
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
         android:allowBackup="true"
@@ -14,6 +16,24 @@
             android:label="Adicionar Novo Contato"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog">
+        </activity>
+        <activity
+            android:name=".PairedDevices"
+            android:label="List paired devices"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".SendActivity">
+        </activity>
+        <activity
+            android:name=".DiscoveredDevices"
+            android:label="Find new devices"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".SendActivity">
+        </activity>
+        <activity
+            android:name=".SendActivity"
+            android:label="Send Data to ESP32"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".MainActivity"

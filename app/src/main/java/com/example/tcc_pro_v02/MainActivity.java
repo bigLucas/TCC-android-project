@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     private LadderMatrix ladderMatrix = new LadderMatrix();
     static final int NEW_CONTACT_REQUEST = 1;
     static final int NEW_COIL_REQUEST = 2;
+    static final int SEND_REQUEST= 3;
     static final int ACTION_CODE_NEW_CONTACT = 1;
     static final int ACTION_CODE_NEW_COIL = 2;
 
@@ -381,11 +382,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // FALTA IMPLEMENTAR:
-    // Retorno da caixa de dialogo para a activity principal
-    // Devolver qual entrada foi selecionada e montar o contato respectivo na tela
-    // Adicionar a caixa de dialogo a opção de contato fechado e contato aberto
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -528,7 +524,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -549,7 +544,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            System.out.println("DEBUG, nav button send");
+            Intent intent = new Intent(getApplicationContext(), SendActivity.class);
+            startActivityForResult(intent, SEND_REQUEST);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
