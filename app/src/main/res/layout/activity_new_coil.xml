@@ -31,20 +31,6 @@
             android:onClick="onRadioButtonClicked"
             android:text="Out 01" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Out 02" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Out 03" />
-
     </RadioGroup>
 
     <LinearLayout
