@@ -16,9 +16,9 @@ public class SaveLogicFile {
         this.context = context;
     }
 
-    public void save(String filename, ArrayList<TextView> slots, @NonNull int[] statusSlot) {
+    public void save(@NonNull String filename, ArrayList<TextView> slots, @NonNull int[] statusSlot) {
         String fileContents = getLogicalDiagramContents(slots, statusSlot);
-        try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE)) {
+        try (FileOutputStream fos = context.openFileOutput(filename.concat(".txt"), Context.MODE_PRIVATE)) {
             fos.write(fileContents.getBytes());
         } catch (FileNotFoundException e) {
             e.printStackTrace();

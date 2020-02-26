@@ -1,11 +1,10 @@
 package com.example.tcc_pro_v02;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,12 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,11 +40,12 @@ public class MainActivity extends AppCompatActivity
     // TextView com bobina NF 5
 
     private ArrayList<TextView> slots = new ArrayList<>();
-    private int statusSlot [] = new int[36];
+    private int[] statusSlot = new int[36];
     private LadderMatrix ladderMatrix = new LadderMatrix();
     static final int NEW_CONTACT_REQUEST = 1;
     static final int NEW_COIL_REQUEST = 2;
     static final int SEND_REQUEST= 3;
+    static final int OPEN_FILE_REQUEST= 4;
     static final int ACTION_CODE_NEW_CONTACT = 1;
     static final int ACTION_CODE_NEW_COIL = 2;
 
@@ -142,8 +139,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 SaveLogicFile saveLogicFile = new SaveLogicFile(getApplicationContext());
-                // Repassar input text com filename aqui
-                saveLogicFile.save();
+                TextInputEditText filename = findViewById(R.id.txt_in_file_name);
+                if (filename.getText().toString().matches("")) {
+                    Toast.makeText(getApplicationContext(), "Digite um nome para o arquivo!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                System.out.println("DEBUG: " + filename.getText());
+                saveLogicFile.save(filename.getText().toString(), slots, statusSlot);
+                Toast.makeText(getApplicationContext(), "Arquivo salvo!", Toast.LENGTH_SHORT).show();
 
 //                FileInputStream fis = null;
 //                try {
@@ -584,8 +587,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
+        if (id == R.id.nav_open) {
+            Intent intent = new Intent(getApplicationContext(), );
+            startActivityForResult(intent, OPEN_FILE_REQUEST);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -595,7 +599,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-            System.out.println("DEBUG, nav button send");
+//            System.out.println("DEBUG, nav button send");
             Intent intent = new Intent(getApplicationContext(), SendActivity.class);
             startActivityForResult(intent, SEND_REQUEST);
         }
