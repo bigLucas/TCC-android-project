@@ -73,7 +73,6 @@ public class SendActivity extends AppCompatActivity {
 
         if(requestCode == ENABLE_BLUETOOTH) {
             if(resultCode == RESULT_OK) {
-                System.out.println("DEBUG, voltei na result activity");
                 statusMessage.setText("Bluetooth ativado :D");
             }
             else {

@@ -1,8 +1,10 @@
 package com.example.tcc_pro_v02;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +19,11 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity
     // TextView com bobina NA 4
     // TextView com bobina NF 5
 
-    private ArrayList<TextView> slots = new ArrayList<TextView>();
+    private ArrayList<TextView> slots = new ArrayList<>();
     private int statusSlot [] = new int[36];
     private LadderMatrix ladderMatrix = new LadderMatrix();
     static final int NEW_CONTACT_REQUEST = 1;
@@ -98,11 +104,9 @@ public class MainActivity extends AppCompatActivity
 
         //Adciona linha nova
         Button newLineButton = findViewById(R.id.btn_line);
-        newLineButton.setOnClickListener(new View.OnClickListener()
-        {
+        newLineButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.line_horizontal_selection);
                 slots.get(ladderMatrix.getSelectorPosi()).setText("");
                 statusSlot[ladderMatrix.getSelectorPosi()] = 3;
@@ -112,11 +116,9 @@ public class MainActivity extends AppCompatActivity
 
         //Inicia uma intent para a escolha de nova bobina de saida
         Button newCoilButton = findViewById(R.id.btn_out);
-        newCoilButton.setOnClickListener(new View.OnClickListener()
-        {
+        newCoilButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
                 intent.putExtra("actionCode", ACTION_CODE_NEW_COIL);
                 startActivityForResult(intent, NEW_COIL_REQUEST);
@@ -125,14 +127,56 @@ public class MainActivity extends AppCompatActivity
 
         //Inicia uma intent para a escolha de novo contato
         Button newContactButton = findViewById(R.id.btn_contact);
-        newContactButton.setOnClickListener(new View.OnClickListener()
-        {
+        newContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
                 intent.putExtra("actionCode", ACTION_CODE_NEW_CONTACT);
                 startActivityForResult(intent, NEW_CONTACT_REQUEST);
+            }
+        });
+
+        // Save button
+        Button saveButton = findViewById(R.id.btn_save);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveLogicFile saveLogicFile = new SaveLogicFile(getApplicationContext());
+                // Repassar input text com filename aqui
+                saveLogicFile.save();
+
+//                FileInputStream fis = null;
+//                try {
+//                    fis = context.openFileInput(filename);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+//                StringBuilder stringBuilder = new StringBuilder();
+//                try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+//                    String line = reader.readLine();
+//                    System.out.println("DEBUG 01:");
+//                    System.out.println(line);
+//                    while (line != null) {
+//                        stringBuilder.append(line).append('\n');
+//                        line = reader.readLine();
+//                        if (line != null) {
+//                            // posso usar o metodo contains para verificar qual o tipo de linha
+//                            // guardo onde cada entrada está sendo acionada no diagrama por linha
+//                            // as saidas ficam depois do "#"
+//                            if (line.contains("#")) {
+//                                System.out.println("#".getBytes());
+//                                System.out.println(line.getBytes());
+//                                System.out.println(line == "#");
+//                            }
+//                        }
+////                        System.out.print(line);
+//                    }
+//                } catch (IOException e) {
+//                    // Error occurred when opening raw file for reading.
+//                } finally {
+//                    String contents = stringBuilder.toString();
+//                }
             }
         });
 
@@ -494,6 +538,13 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
+        // Para pegar uma lista de arquivos disponiveis
+//        String[] files = context.fileList();
+//        System.out.println("DEBUG: ");
+//        for (int i=0; i<files.length; i++) {
+//            System.out.println(files[i]);
+//        }
 
     @Override
     public void onBackPressed() {

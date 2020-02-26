@@ -33,6 +33,7 @@
             android:layout_weight="1">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/txt_in_file_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nome do Arquivo" />
@@ -439,28 +440,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="C" />
+            android:text="Contato" />
 
         <Button
             android:id="@+id/btn_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:text="LH" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:text="LV" />
+            android:layout_weight="0.5"
+            android:text="Linha" />
 
         <Button
             android:id="@+id/btn_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="B" />
+            android:text="Bobina" />
     </LinearLayout>
 
 
