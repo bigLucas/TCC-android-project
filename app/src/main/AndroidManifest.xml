@@ -18,6 +18,12 @@
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
         <activity
+            android:name=".OpenActivity.OpenActivity"
+            android:label="Abrir um arquivo salvo"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
             android:name=".PairedDevices"
             android:label="List paired devices"
             android:screenOrientation="portrait"

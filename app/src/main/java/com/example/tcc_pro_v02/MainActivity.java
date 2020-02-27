@@ -3,6 +3,7 @@ package com.example.tcc_pro_v02;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.tcc_pro_v02.OpenActivity.OpenActivity;
 
 import java.util.ArrayList;
 
@@ -138,14 +141,14 @@ public class MainActivity extends AppCompatActivity
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveLogicFile saveLogicFile = new SaveLogicFile(getApplicationContext());
+                ManagementLogicFile managementLogicFile = new ManagementLogicFile(getApplicationContext());
                 TextInputEditText filename = findViewById(R.id.txt_in_file_name);
                 if (filename.getText().toString().matches("")) {
                     Toast.makeText(getApplicationContext(), "Digite um nome para o arquivo!", Toast.LENGTH_LONG).show();
                     return;
                 }
-                System.out.println("DEBUG: " + filename.getText());
-                saveLogicFile.save(filename.getText().toString(), slots, statusSlot);
+//                System.out.println("DEBUG: " + filename.getText());
+                managementLogicFile.save(filename.getText().toString(), slots, statusSlot);
                 Toast.makeText(getApplicationContext(), "Arquivo salvo!", Toast.LENGTH_SHORT).show();
 
 //                FileInputStream fis = null;
@@ -567,7 +570,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //ESSA FUNÇÃO CUIDA DOS CLICKS NA ACTION BAR
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -583,12 +586,11 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_open) {
-            Intent intent = new Intent(getApplicationContext(), );
+            Intent intent = new Intent(getApplicationContext(), OpenActivity.class);
             startActivityForResult(intent, OPEN_FILE_REQUEST);
         } else if (id == R.id.nav_gallery) {
 
@@ -599,7 +601,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-//            System.out.println("DEBUG, nav button send");
             Intent intent = new Intent(getApplicationContext(), SendActivity.class);
             startActivityForResult(intent, SEND_REQUEST);
         }

@@ -4,15 +4,19 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class SaveLogicFile {
+public class ManagementLogicFile {
     private Context context;
 
-    public SaveLogicFile(Context context) {
+    public ManagementLogicFile(Context context) {
         this.context = context;
     }
 
@@ -25,6 +29,41 @@ public class SaveLogicFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String read(@NonNull String filename) {
+        FileInputStream fis = null;
+        try {
+            fis = context.openFileInput(filename);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+            String line = reader.readLine();
+//            System.out.println("DEBUG 01:");
+//            System.out.println(line);
+            while (line != null) {
+                stringBuilder.append(line).append('\n');
+                line = reader.readLine();
+//                if (line != null) {
+//                    // posso usar o metodo contains para verificar qual o tipo de linha
+//                    // guardo onde cada entrada está sendo acionada no diagrama por linha
+//                    // as saidas ficam depois do "#"
+//                    if (line.contains("#")) {
+//                        System.out.println("#".getBytes());
+//                        System.out.println(line.getBytes());
+//                        System.out.println(line == "#");
+//                    }
+//                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            String contents = stringBuilder.toString();
+        }
+        return stringBuilder.toString();
     }
 
     @NonNull private String getLogicalDiagramContents(ArrayList<TextView> slots, @NonNull int[] statusSlot) {
