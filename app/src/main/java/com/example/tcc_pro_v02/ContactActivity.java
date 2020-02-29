@@ -2,6 +2,7 @@ package com.example.tcc_pro_v02;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,7 @@ public class ContactActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent result = new Intent();
-                        result.putExtra("numero", numEntrada);
+                        result.putExtra("inputNumber", numEntrada);
                         result.putExtra("contactType", 1);
                         setResult(RESULT_OK, result);
                         finish();
@@ -38,7 +39,7 @@ public class ContactActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent result = new Intent();
-                        result.putExtra("numero", numEntrada);
+                        result.putExtra("inputNumber", numEntrada);
                         result.putExtra("contactType", 2);
                         setResult(RESULT_OK, result);
                         finish();
@@ -55,7 +56,7 @@ public class ContactActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent result = new Intent();
-                        result.putExtra("numero", numEntrada);
+                        result.putExtra("outputNumber", numEntrada);
                         result.putExtra("contactType", 1);
                         setResult(RESULT_OK, result);
                         finish();
@@ -65,7 +66,7 @@ public class ContactActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent result = new Intent();
-                        result.putExtra("numero", numEntrada);
+                        result.putExtra("outputNumber", numEntrada);
                         result.putExtra("contactType", 2);
                         setResult(RESULT_OK, result);
                         finish();
@@ -76,7 +77,7 @@ public class ContactActivity extends AppCompatActivity {
         }
     }
 
-    public void onRadioButtonClicked(View view) {
+    public void onRadioButtonClicked(@NonNull View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 

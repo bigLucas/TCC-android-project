@@ -1,5 +1,6 @@
 package com.example.tcc_pro_v02.OpenActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -53,8 +54,10 @@ public class OpenActivity extends AppCompatActivity {
                                 String content = managementLogicFile.read(file);
                                 // faltar devolver o content pra main activity
                                 // com o resultado na main posso preencher os slots
-                                System.out.println("DEBUG: " + content);
-                                setResult(RESULT_OK);
+//                                System.out.println("DEBUG: " + content);
+                                Intent result = new Intent();
+                                result.putExtra("content", content);
+                                setResult(RESULT_OK, result);
                                 finish();
                             }
                             @Override

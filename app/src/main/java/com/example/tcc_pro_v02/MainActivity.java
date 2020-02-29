@@ -107,9 +107,7 @@ public class MainActivity extends AppCompatActivity
         newLineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.line_horizontal_selection);
-                slots.get(ladderMatrix.getSelectorPosi()).setText("");
-                statusSlot[ladderMatrix.getSelectorPosi()] = 3;
+                insertLine(ladderMatrix.getSelectorPosi(), true);
                 changePosiOfSelector(ladderMatrix.getSelectorPosi() + 1);
             }
         });
@@ -147,42 +145,8 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), "Digite um nome para o arquivo!", Toast.LENGTH_LONG).show();
                     return;
                 }
-//                System.out.println("DEBUG: " + filename.getText());
                 managementLogicFile.save(filename.getText().toString(), slots, statusSlot);
                 Toast.makeText(getApplicationContext(), "Arquivo salvo!", Toast.LENGTH_SHORT).show();
-
-//                FileInputStream fis = null;
-//                try {
-//                    fis = context.openFileInput(filename);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//                InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
-//                StringBuilder stringBuilder = new StringBuilder();
-//                try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-//                    String line = reader.readLine();
-//                    System.out.println("DEBUG 01:");
-//                    System.out.println(line);
-//                    while (line != null) {
-//                        stringBuilder.append(line).append('\n');
-//                        line = reader.readLine();
-//                        if (line != null) {
-//                            // posso usar o metodo contains para verificar qual o tipo de linha
-//                            // guardo onde cada entrada está sendo acionada no diagrama por linha
-//                            // as saidas ficam depois do "#"
-//                            if (line.contains("#")) {
-//                                System.out.println("#".getBytes());
-//                                System.out.println(line.getBytes());
-//                                System.out.println(line == "#");
-//                            }
-//                        }
-////                        System.out.print(line);
-//                    }
-//                } catch (IOException e) {
-//                    // Error occurred when opening raw file for reading.
-//                } finally {
-//                    String contents = stringBuilder.toString();
-//                }
             }
         });
 
@@ -414,9 +378,9 @@ public class MainActivity extends AppCompatActivity
             if(resultCode == RESULT_OK) {
                 Bundle dados = data.getExtras();
                 assert dados != null;
-                int numero = dados.getInt("numero");
+                int numero = dados.getInt("inputNumber");
                 int contactType = dados.getInt("contactType");
-                createNewContact(numero, contactType);
+                createNewContact(numero, contactType, ladderMatrix.getSelectorPosi(), true);
                 changePosiOfSelector(ladderMatrix.getSelectorPosi() + 1);
             }
         }
@@ -424,10 +388,18 @@ public class MainActivity extends AppCompatActivity
             if(resultCode == RESULT_OK) {
                 Bundle dados = data.getExtras();
                 assert dados != null;
-                int numero = dados.getInt("numero");
+                int numero = dados.getInt("outputNumber");
                 int contactType = dados.getInt("contactType");
-                createNewCoil(numero, contactType);
+                createNewCoil(numero, contactType, ladderMatrix.getSelectorPosi(), true);
                 changePosiOfSelector(ladderMatrix.getSelectorPosi() + 1);
+            }
+        }
+        if(requestCode == OPEN_FILE_REQUEST) {
+            if(resultCode == RESULT_OK) {
+                Bundle intentData = data.getExtras();
+                assert intentData != null;
+                String content = intentData.getString("content");
+                loadDiagram(content);
             }
         }
     }
@@ -442,35 +414,51 @@ public class MainActivity extends AppCompatActivity
         super.onPause();
     }
 
-    public void createNewContact(int inputAddress, int contactType) {
+    public void createNewContact(int inputAddress, int contactType, int position, boolean selection) {
         switch(contactType) {
             case 1: {
-                slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.contact_selection);
-                slots.get(ladderMatrix.getSelectorPosi()).setText("In " + inputAddress);
-                statusSlot[ladderMatrix.getSelectorPosi()] = 1;
+                if (selection) {
+                    slots.get(position).setBackgroundResource(R.drawable.contact_selection);
+                } else {
+                    slots.get(position).setBackgroundResource(R.drawable.contact);
+                }
+                slots.get(position).setText("In " + inputAddress);
+                statusSlot[position] = 1;
                 break;
             }
             case 2: {
-                slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.contact_nc_selection);
-                slots.get(ladderMatrix.getSelectorPosi()).setText("In " + inputAddress);
-                statusSlot[ladderMatrix.getSelectorPosi()] = 2;
+                if (selection) {
+                    slots.get(position).setBackgroundResource(R.drawable.contact_nc_selection);
+                } else {
+                    slots.get(position).setBackgroundResource(R.drawable.contact_nc);
+                }
+                slots.get(position).setText("In " + inputAddress);
+                statusSlot[position] = 2;
                 break;
             }
         }
     }
 
-    public void createNewCoil(int outputAddress, int contactType) {
+    public void createNewCoil(int outputAddress, int contactType, int position, boolean selection) {
         switch(contactType) {
             case 1: {
-                slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.coil_selection);
-                slots.get(ladderMatrix.getSelectorPosi()).setText("Out " + outputAddress);
-                statusSlot[ladderMatrix.getSelectorPosi()] = 4;
+                if (selection) {
+                    slots.get(position).setBackgroundResource(R.drawable.coil_selection);
+                } else {
+                    slots.get(position).setBackgroundResource(R.drawable.coil);
+                }
+                slots.get(position).setText("Out " + outputAddress);
+                statusSlot[position] = 4;
                 break;
             }
             case 2: {
-                slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.coil_nc_selection);
-                slots.get(ladderMatrix.getSelectorPosi()).setText("Out " + outputAddress);
-                statusSlot[ladderMatrix.getSelectorPosi()] = 5;
+                if (selection) {
+                    slots.get(position).setBackgroundResource(R.drawable.coil_nc_selection);
+                } else {
+                    slots.get(position).setBackgroundResource(R.drawable.coil_nc);
+                }
+                slots.get(position).setText("Out " + outputAddress);
+                statusSlot[position] = 5;
                 break;
             }
         }
@@ -545,12 +533,67 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-        // Para pegar uma lista de arquivos disponiveis
-//        String[] files = context.fileList();
-//        System.out.println("DEBUG: ");
-//        for (int i=0; i<files.length; i++) {
-//            System.out.println(files[i]);
-//        }
+    private void insertLine(int position, boolean selection) {
+        if (selection) {
+            slots.get(position).setBackgroundResource(R.drawable.line_horizontal_selection);
+        } else {
+            slots.get(position).setBackgroundResource(R.drawable.line_horizontal);
+        }
+        slots.get(position).setText("");
+        statusSlot[position] = 3;
+    }
+
+    private void loadDiagram(@NonNull String content) {
+        String[] points = content.split("#");
+        String[] inputs = points[0].split("\n");
+        String[] outputs = points[1].replaceFirst("\n", "").split("\n");
+        loadInputs(inputs);
+        loadOutputs(outputs);
+        loadLines(points[2].replaceFirst("\n", ""));
+    }
+    
+    private void loadInputs(@NonNull String[] inputs) {
+        for (String points: inputs) {
+            if (points.length()<4) {
+                continue;
+            }
+            String[] pointsWithoutInput = points.split(":");
+            String[] aux = pointsWithoutInput[1].split(",");
+            for (String point : aux) {
+                if(point.contains("!")) {
+                    String[] auxPoint = point.split("!");
+                    createNewContact(Integer.parseInt(pointsWithoutInput[0]),2, Integer.parseInt(auxPoint[1]), false);
+                    continue;
+                }
+                createNewContact(Integer.parseInt(pointsWithoutInput[0]),1, Integer.parseInt(point), false);
+            }
+        }
+    }
+
+    private void loadOutputs(@NonNull String[] outputs) {
+        for (String points: outputs) {
+            if (points.length()<4) {
+                continue;
+            }
+            String[] pointsWithoutOutput = points.split(":");
+            String[] aux = pointsWithoutOutput[1].split(",");
+            for (String point : aux) {
+                if(point.contains("!")) {
+                    String[] auxPoint = point.split("!");
+                    createNewCoil(Integer.parseInt(pointsWithoutOutput[0]),2, Integer.parseInt(auxPoint[1]), false);
+                    continue;
+                }
+                createNewCoil(Integer.parseInt(pointsWithoutOutput[0]),1, Integer.parseInt(point), false);
+            }
+        }
+    }
+
+    private void loadLines(@NonNull String lines) {
+        String[] points = lines.replaceFirst("lines:", "").replaceFirst("\n", "").split(",");
+        for (String point: points) {
+            insertLine(Integer.parseInt(point), false);
+        }
+    }
 
     @Override
     public void onBackPressed() {
