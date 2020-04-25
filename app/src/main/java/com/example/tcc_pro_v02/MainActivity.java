@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity
     static final int OPEN_FILE_REQUEST= 4;
     static final int ACTION_CODE_NEW_CONTACT = 1;
     static final int ACTION_CODE_NEW_COIL = 2;
+    static final int INSERTION_TYPE_CONTACT = 1;
+    static final int INSERTION_TYPE_COIL = 2;
+    static final int INSERTION_TYPE_LINE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +110,12 @@ public class MainActivity extends AppCompatActivity
         newLineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertLine(ladderMatrix.getSelectorPosi(), true);
-                changePosiOfSelector(ladderMatrix.getSelectorPosi() + 1);
+                if (isRightPlaceToInsert(ladderMatrix.getSelectorPosi(), INSERTION_TYPE_LINE)) {
+                    insertLine(ladderMatrix.getSelectorPosi(), true);
+                    changePosiOfSelector(ladderMatrix.getSelectorPosi() + 1);
+                    return;
+                }
+                Toast.makeText(getApplicationContext(),"Impossível inserir linha", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -117,9 +124,13 @@ public class MainActivity extends AppCompatActivity
         newCoilButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
-                intent.putExtra("actionCode", ACTION_CODE_NEW_COIL);
-                startActivityForResult(intent, NEW_COIL_REQUEST);
+                if (isRightPlaceToInsert(ladderMatrix.getSelectorPosi(), INSERTION_TYPE_COIL)) {
+                    Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
+                    intent.putExtra("actionCode", ACTION_CODE_NEW_COIL);
+                    startActivityForResult(intent, NEW_COIL_REQUEST);
+                    return;
+                }
+                Toast.makeText(getApplicationContext(),"Impossível inserir bobina", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -128,9 +139,13 @@ public class MainActivity extends AppCompatActivity
         newContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
-                intent.putExtra("actionCode", ACTION_CODE_NEW_CONTACT);
-                startActivityForResult(intent, NEW_CONTACT_REQUEST);
+                if (isRightPlaceToInsert(ladderMatrix.getSelectorPosi(), INSERTION_TYPE_CONTACT)) {
+                    Intent intent = new Intent(getApplicationContext(), ContactActivity.class);
+                    intent.putExtra("actionCode", ACTION_CODE_NEW_CONTACT);
+                    startActivityForResult(intent, NEW_CONTACT_REQUEST);
+                    return;
+                }
+                Toast.makeText(getApplicationContext(),"Impossível inserir contato", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -594,6 +609,24 @@ public class MainActivity extends AppCompatActivity
             insertLine(Integer.parseInt(point), false);
         }
     }
+
+    private boolean isRightPlaceToInsert(int selectorPosition, int insertionType) {
+        switch (insertionType) {
+            case INSERTION_TYPE_CONTACT: {
+                return !(((selectorPosition+1) % 6) == 0);
+            }
+            case INSERTION_TYPE_COIL: {
+                return (((selectorPosition+1) % 6) == 0);
+            }
+            case INSERTION_TYPE_LINE: {
+                return !((((selectorPosition+1) % 6) == 0) || ((selectorPosition % 6) == 0));
+            }
+            default: {return false;}
+        }
+    }
+
+    // criar classe para compilar a logica do diagrama, pegando dados do arquivo.txt
+    // diagrama deve ser slavo antes de ser compilado
 
     @Override
     public void onBackPressed() {
