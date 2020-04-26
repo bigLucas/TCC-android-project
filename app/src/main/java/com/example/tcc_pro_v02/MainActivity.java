@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tcc_pro_v02.OpenActivity.OpenActivity;
+import com.example.tcc_pro_v02.Compiler.Compiler;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<TextView> slots = new ArrayList<>();
     private int[] statusSlot = new int[36];
     private LadderMatrix ladderMatrix = new LadderMatrix();
+    private int[] hexLogic;
     static final int NEW_CONTACT_REQUEST = 1;
     static final int NEW_COIL_REQUEST = 2;
     static final int SEND_REQUEST= 3;
@@ -415,6 +417,8 @@ public class MainActivity extends AppCompatActivity
                 assert intentData != null;
                 String content = intentData.getString("content");
                 loadDiagram(content);
+                Compiler compiler = new Compiler(content);
+                this.hexLogic = compiler.compileLogic();
             }
         }
     }
@@ -625,9 +629,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // criar classe para compilar a logica do diagrama, pegando dados do arquivo.txt
-    // diagrama deve ser slavo antes de ser compilado
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -670,7 +671,7 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(intent, OPEN_FILE_REQUEST);
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_compile) {
 
         } else if (id == R.id.nav_tools) {
 
@@ -678,6 +679,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(), SendActivity.class);
+            intent.putExtra("hexLogic", this.hexLogic);
             startActivityForResult(intent, SEND_REQUEST);
         }
 

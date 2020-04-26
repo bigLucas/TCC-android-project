@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_send"
             android:title="@string/menu_send" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_compile"
+            android:icon="@drawable/ic_menu_compile"
+            android:title="@string/menu_compile" />
         <item
             android:id="@+id/nav_tools"
             android:icon="@drawable/ic_menu_manage"
