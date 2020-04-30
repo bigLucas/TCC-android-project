@@ -114,11 +114,11 @@ public class Compiler {
                 }
                 if (outputInPLC == OUT_0 && i == IN_2 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
                     System.out.println("DEBUG I pass for here 02");
-                    return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                    return HexFiles.setNewHexFile(HexFiles.IN_2_OUT_0, HexFiles.BASE_IN_0_OUT_0);
                 }
                 if (outputInPLC == OUT_0 && i == IN_3 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
                     System.out.println("DEBUG I pass for here 03");
-                    return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                    return HexFiles.setNewHexFile(HexFiles.IN_3_OUT_0, HexFiles.BASE_IN_0_OUT_0);
                 }
             }
         }

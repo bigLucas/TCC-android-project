@@ -16,7 +16,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/Compiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/HexFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/HexFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/MainActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
+            <state relative-caret-position="114">
               <caret line="420" column="56" lean-forward="true" selection-start-line="420" selection-start-column="56" selection-end-line="420" selection-end-column="56" />
             </state>
           </provider>
@@ -91,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/Compiler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="134" lean-forward="true" selection-start-line="17" selection-start-column="134" selection-end-line="17" selection-end-column="134" />
+            <state relative-caret-position="270">
+              <caret line="120" column="97" lean-forward="true" selection-start-line="120" selection-start-column="97" selection-end-line="120" selection-end-column="97" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/HexFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+            <state relative-caret-position="255">
+              <caret line="34" column="42" lean-forward="true" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -227,8 +226,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/SendActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/FlashMemoryHex.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/HexFiles.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/HexFiles.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/Compiler.java" />
       </list>
     </option>
@@ -415,7 +414,7 @@
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49924242" weight="0.37685952" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32899022" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848485" weight="0.7752066" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.3196046" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="4" visible="true" weight="0.31900826" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5007576" side_tool="true" weight="0.37685952" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.3289256" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49848485" weight="0.31900826" />
@@ -787,27 +786,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="420" column="56" lean-forward="true" selection-start-line="420" selection-start-column="56" selection-end-line="420" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/HexFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="34" column="42" lean-forward="true" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="420" column="56" lean-forward="true" selection-start-line="420" selection-start-column="56" selection-end-line="420" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/tcc_pro_v02/Compiler/Compiler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="134" lean-forward="true" selection-start-line="17" selection-start-column="134" selection-end-line="17" selection-end-column="134" />
+        <state relative-caret-position="270">
+          <caret line="120" column="97" lean-forward="true" selection-start-line="120" selection-start-column="97" selection-end-line="120" selection-end-column="97" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

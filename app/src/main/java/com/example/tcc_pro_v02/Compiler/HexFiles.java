@@ -22,6 +22,20 @@ public class HexFiles {
             new FlashMemoryHex(830, 0x9C)
     );
 
+    public static final List<FlashMemoryHex> IN_2_OUT_0 = Arrays.asList(
+            new FlashMemoryHex(822, 0xC5),
+            new FlashMemoryHex(826, 0x1),
+            new FlashMemoryHex(827, 0xEA),
+            new FlashMemoryHex(830, 0x9D)
+    );
+
+    public static final List<FlashMemoryHex> IN_3_OUT_0 = Arrays.asList(
+            new FlashMemoryHex(822, 0xC6),
+            new FlashMemoryHex(826, 0x2),
+            new FlashMemoryHex(827, 0xEA),
+            new FlashMemoryHex(830, 0x9E)
+    );
+
     public static final int[] BASE_IN_0_OUT_0 = {
             0x0C, 0x94, 0x61, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00,
             0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00,
