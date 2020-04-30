@@ -11,12 +11,11 @@ public class Compiler {
     private String[] inputs;
     private String[] outputs;
     private String lines;
+    private final int NOT_FOUND_ON_SAME_LINE = -1;
 
-    public Compiler(String logic) {
-        this.logic = logic;
-    }
+    public Compiler(String logic) { this.logic = logic; }
 
-    // TODO: terminar o compilador, continuar debug, algo de errado no hexafiles
+    // TODO: Compile new logic with arduino IDE, add it to Hexfiles.java and add new cases for compile diagrams in getHexFile function
 
     public int[] compileLogic() {
         int[] logicCompiled = new int[]{};
@@ -29,26 +28,38 @@ public class Compiler {
         List<Integer> OUT_1 = extractPoints(this.outputs[1]);
         List<Integer> linesPoints = extractLinePoints(this.lines);
         for (int outPoint: OUT_0) {
-            List<Integer> auxInPoints = new ArrayList<>();
-            List<Integer> auxLinePoints = new ArrayList<>();
-            for (int inPoint: IN_0) {
-                if (inPoint < outPoint && inPoint > (outPoint-6)) {
-                    auxInPoints.add(inPoint);
-                }
-            }
-            for (int line: linesPoints) {
-                if (line < outPoint && line > (outPoint-6)) {
-                    auxLinePoints.add(line);
-                }
-            }
-            System.out.println("DEBUG " + auxInPoints.toString());
-            System.out.println("DEBUG " + auxLinePoints.toString());
-            logicCompiled = getHexFile(0,0, outPoint, auxInPoints.get(0), auxLinePoints);
-            int[] logic = getHexFile(1,0, outPoint, auxInPoints.get(0), auxLinePoints);
-            System.out.println("DEBUG " + logic.length);
-            System.out.println("DEBUG " + Arrays.equals(logicCompiled, logic));
+            List<Integer> inputsPointsOnSameLineOfOutput = new ArrayList<>();
+            inputsPointsOnSameLineOfOutput.add(findPointsOnSameLineOfOutput(IN_0, outPoint));
+            inputsPointsOnSameLineOfOutput.add(findPointsOnSameLineOfOutput(IN_1, outPoint));
+            inputsPointsOnSameLineOfOutput.add(findPointsOnSameLineOfOutput(IN_2, outPoint));
+            inputsPointsOnSameLineOfOutput.add(findPointsOnSameLineOfOutput(IN_3, outPoint));
+            List<Integer> linesPointsOnSameLineOfOutput = findLinesOnSameLineOfOutput(linesPoints, outPoint);
+            System.out.println("DEBUG inputs on same line: " + inputsPointsOnSameLineOfOutput.toString());
+            System.out.println("DEBUG lines: " + linesPointsOnSameLineOfOutput.toString());
+            logicCompiled = getHexFile(0, outPoint, inputsPointsOnSameLineOfOutput, linesPointsOnSameLineOfOutput);
         }
         return logicCompiled;
+    }
+
+    private int findPointsOnSameLineOfOutput(@NonNull List<Integer> pointsOnDiagram, int outputPointOnDiagram) {
+        int inputOnSameLine = NOT_FOUND_ON_SAME_LINE;
+        for (int point: pointsOnDiagram) {
+            if (point < outputPointOnDiagram && point > (outputPointOnDiagram - 6)) {
+                inputOnSameLine = point;
+                break;
+            }
+        }
+        return inputOnSameLine;
+    }
+
+    private List<Integer> findLinesOnSameLineOfOutput(@NonNull List<Integer> pointsOnDiagram, int outputPointOnDiagram) {
+        List<Integer> pointsOnSameLine = new ArrayList<>();
+        for (int point: pointsOnDiagram) {
+            if (point < outputPointOnDiagram && point > (outputPointOnDiagram-6)) {
+                pointsOnSameLine.add(point);
+            }
+        }
+        return pointsOnSameLine;
     }
 
     private void setIOsByLogicalDiagram() {
@@ -79,7 +90,7 @@ public class Compiler {
         return points;
     }
 
-    private int[] getHexFile(int outputPointInPLC, int inputPointInPLC, int outputSlot, int inputSlot, List<Integer> linesList) {
+    private int[] getHexFile(int outputInPLC, int outputSlot, List<Integer> inputsPointsOnSameLineOfOutput, List<Integer> linesList) {
         final int OUT_0 = 0;
         final int OUT_1 = 1;
         final int IN_0 = 0;
@@ -91,11 +102,25 @@ public class Compiler {
         final int SLOT_OUT_17 = 17;
         final int SLOT_OUT_23 = 23;
         final int SLOT_OUT_29 = 29;
-        if (outputPointInPLC == OUT_0 && inputPointInPLC == IN_0 && outputSlot == SLOT_OUT_5 && inputSlot == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
-            return HexFiles.BASE_IN_0_OUT_0;
-        }
-        if (outputPointInPLC == OUT_1 && inputPointInPLC == IN_0 && outputSlot == SLOT_OUT_5 && inputSlot == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
-            return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+        for (int i = 0; i<inputsPointsOnSameLineOfOutput.size(); i++) {
+            if (inputsPointsOnSameLineOfOutput.get(i) != NOT_FOUND_ON_SAME_LINE) {
+                if (outputInPLC == OUT_0 && i == IN_0 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
+                    System.out.println("DEBUG I pass for here 00");
+                    return HexFiles.BASE_IN_0_OUT_0;
+                }
+                if (outputInPLC == OUT_0 && i == IN_1 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
+                    System.out.println("DEBUG I pass for here 01");
+                    return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                }
+                if (outputInPLC == OUT_0 && i == IN_2 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
+                    System.out.println("DEBUG I pass for here 02");
+                    return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                }
+                if (outputInPLC == OUT_0 && i == IN_3 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
+                    System.out.println("DEBUG I pass for here 03");
+                    return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                }
+            }
         }
         return HexFiles.BASE_IN_0_OUT_0;
     }

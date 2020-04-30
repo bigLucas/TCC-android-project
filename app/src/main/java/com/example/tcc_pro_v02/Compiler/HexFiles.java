@@ -7,12 +7,12 @@ import java.util.Arrays;
 
 public class HexFiles {
 
-    @org.jetbrains.annotations.Contract("_, _ -> param2")
     public static int[] setNewHexFile(@NonNull List<FlashMemoryHex> diferences, int[] baseHexFile) {
+        int[] newHexFile = baseHexFile.clone();
         for (FlashMemoryHex diference: diferences) {
-            baseHexFile[diference.index] = diference.hex;
+            newHexFile[diference.index] = diference.hex;
         }
-        return baseHexFile;
+        return newHexFile;
     }
 
     public static final List<FlashMemoryHex> IN_1_OUT_0 = Arrays.asList(

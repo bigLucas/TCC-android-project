@@ -419,6 +419,11 @@ public class MainActivity extends AppCompatActivity
                 loadDiagram(content);
                 Compiler compiler = new Compiler(content);
                 this.hexLogic = compiler.compileLogic();
+                if(this.hexLogic.length == 0) {
+                    Toast.makeText(getApplicationContext(),"Lógica não compilada", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Lógica compilada com sucesso", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
