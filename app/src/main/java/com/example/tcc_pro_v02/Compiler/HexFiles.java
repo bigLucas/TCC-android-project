@@ -16,27 +16,6 @@ public class HexFiles {
         return newHexFile;
     }
 
-    public static final List<FlashMemoryHex> IN_1_OUT_0 = Arrays.asList(
-        new FlashMemoryHex(822, 0xC4),
-        new FlashMemoryHex(826, 0x00),
-        new FlashMemoryHex(827, 0xEA),
-        new FlashMemoryHex(830, 0x9C)
-    );
-
-    public static final List<FlashMemoryHex> IN_2_OUT_0 = Arrays.asList(
-        new FlashMemoryHex(822, 0xC5),
-        new FlashMemoryHex(826, 0x1),
-        new FlashMemoryHex(827, 0xEA),
-        new FlashMemoryHex(830, 0x9D)
-    );
-
-    public static final List<FlashMemoryHex> IN_3_OUT_0 = Arrays.asList(
-        new FlashMemoryHex(822, 0xC6),
-        new FlashMemoryHex(826, 0x2),
-        new FlashMemoryHex(827, 0xEA),
-        new FlashMemoryHex(830, 0x9E)
-    );
-
     public static final int[] BASE_IN_0_OUT_0 = {
         0x0C, 0x94, 0x61, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00,
         0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00,
@@ -95,6 +74,27 @@ public class HexFiles {
         0xEE, 0x0F, 0xFF, 0x1F, 0xEE, 0x58, 0xFF, 0x4F, 0xA5, 0x91, 0xB4, 0x91, 0x8C, 0x91, 0xC8, 0x22,
         0x81, 0xE0, 0x09, 0xF4, 0x80, 0xE0, 0x0E, 0x94, 0x9E, 0x00, 0xE5, 0xCF, 0xF8, 0x94, 0xFF, 0xCF
     };
+
+    public static final List<FlashMemoryHex> IN_1_OUT_0 = Arrays.asList(
+            new FlashMemoryHex(822, 0xC4),
+            new FlashMemoryHex(826, 0x00),
+            new FlashMemoryHex(827, 0xEA),
+            new FlashMemoryHex(830, 0x9C)
+    );
+
+    public static final List<FlashMemoryHex> IN_2_OUT_0 = Arrays.asList(
+            new FlashMemoryHex(822, 0xC5),
+            new FlashMemoryHex(826, 0x1),
+            new FlashMemoryHex(827, 0xEA),
+            new FlashMemoryHex(830, 0x9D)
+    );
+
+    public static final List<FlashMemoryHex> IN_3_OUT_0 = Arrays.asList(
+            new FlashMemoryHex(822, 0xC6),
+            new FlashMemoryHex(826, 0x2),
+            new FlashMemoryHex(827, 0xEA),
+            new FlashMemoryHex(830, 0x9E)
+    );
 
     public static final int[] BASE_IN_0_IN_1_OUT_0 = {
         0x0C, 0x94, 0x61, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00, 0x0C, 0x94, 0x73, 0x00,
@@ -163,6 +163,21 @@ public class HexFiles {
     );
 
     public static final List<FlashMemoryHex> IN_0_IN_3_OUT_0 = Collections.singletonList(
+        new FlashMemoryHex(914, 0x88)
+    );
+
+    public static final List<FlashMemoryHex> IN_1_IN_2_OUT_0 = Arrays.asList(
+        new FlashMemoryHex(904, 0x86),
+        new FlashMemoryHex(914, 0x87)
+    );
+
+    public static final List<FlashMemoryHex> IN_1_IN_3_OUT_0 = Arrays.asList(
+        new FlashMemoryHex(904, 0x86),
+        new FlashMemoryHex(914, 0x88)
+    );
+
+    public static final List<FlashMemoryHex> IN_2_IN_3_OUT_0 = Arrays.asList(
+        new FlashMemoryHex(904, 0x87),
         new FlashMemoryHex(914, 0x88)
     );
 

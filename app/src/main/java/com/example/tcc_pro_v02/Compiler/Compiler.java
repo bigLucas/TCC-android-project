@@ -21,7 +21,7 @@ public class Compiler {
     public Compiler(String logic) { this.logic = logic; }
 
     // TODO: Compile new logic with arduino IDE, add it to Hexfiles.java and add new cases for compile diagrams in getHexFile function
-
+    // TODO: falta lógica pra 4 entradas
     public int[] compileLogic() {
         int[] logicCompiled = new int[]{};
         setIOsByLogicalDiagram();
@@ -162,7 +162,6 @@ public class Compiler {
         return index;
     }
 
-    // TODO: no totoal tem 6 casos, falta 3 ifs aqui
     private int[] findHexFileForTwoInputsAndOneOutput(@NonNull List<Integer> indexOfInputs) {
         if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_1_IN_PLC) {
             System.out.println("DEBUG IN_0 and IN_1");
@@ -173,6 +172,15 @@ public class Compiler {
         } if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_3_IN_PLC) {
             System.out.println("DEBUG IN_0 and IN_3");
             return HexFiles.setNewHexFile(HexFiles.IN_0_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_OUT_0);
+        } if(indexOfInputs.get(0) == IN_1_IN_PLC && indexOfInputs.get(1) == IN_2_IN_PLC) {
+            System.out.println("DEBUG IN_1 and IN_2");
+            return HexFiles.setNewHexFile(HexFiles.IN_1_IN_2_OUT_0, HexFiles.BASE_IN_0_IN_1_OUT_0);
+        } if(indexOfInputs.get(0) == IN_1_IN_PLC && indexOfInputs.get(1) == IN_3_IN_PLC) {
+            System.out.println("DEBUG IN_1 and IN_3");
+            return HexFiles.setNewHexFile(HexFiles.IN_1_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_OUT_0);
+        } if(indexOfInputs.get(0) == IN_2_IN_PLC && indexOfInputs.get(1) == IN_3_IN_PLC) {
+            System.out.println("DEBUG IN_2 and IN_3");
+            return HexFiles.setNewHexFile(HexFiles.IN_2_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_OUT_0);
         }
         return new int[]{};
     }
