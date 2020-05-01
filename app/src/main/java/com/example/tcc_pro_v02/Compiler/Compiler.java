@@ -1,7 +1,6 @@
 package com.example.tcc_pro_v02.Compiler;
 
 import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +11,12 @@ public class Compiler {
     private String[] outputs;
     private String lines;
     private final int NOT_FOUND_ON_SAME_LINE = -1;
+    private final int OUT_0_IN_PLC = 0;
+    private final int OUT_1_IN_PLC = 1;
+    private final int IN_0_IN_PLC = 0;
+    private final int IN_1_IN_PLC = 1;
+    private final int IN_2_IN_PLC = 2;
+    private final int IN_3_IN_PLC = 3;
 
     public Compiler(String logic) { this.logic = logic; }
 
@@ -91,36 +96,74 @@ public class Compiler {
     }
 
     private int[] getHexFile(int outputInPLC, int outputSlot, List<Integer> inputsPointsOnSameLineOfOutput, List<Integer> linesList) {
-        final int OUT_0 = 0;
-        final int OUT_1 = 1;
-        final int IN_0 = 0;
-        final int IN_1 = 1;
-        final int IN_2 = 2;
-        final int IN_3 = 3;
+        final int quantityOfInputsOnSameLineOfOutput = quantityOfInputsOnSameLine(inputsPointsOnSameLineOfOutput);
+        final List<Integer> index = getIndexOfInputsOnSameLine(inputsPointsOnSameLineOfOutput);
+        int[] newHexFile = new int[]{};
         final int SLOT_OUT_5 = 5;
         final int SLOT_OUT_11 = 11;
         final int SLOT_OUT_17 = 17;
         final int SLOT_OUT_23 = 23;
         final int SLOT_OUT_29 = 29;
-        for (int i = 0; i<inputsPointsOnSameLineOfOutput.size(); i++) {
-            if (inputsPointsOnSameLineOfOutput.get(i) != NOT_FOUND_ON_SAME_LINE) {
-                if (outputInPLC == OUT_0 && i == IN_0 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
-                    System.out.println("DEBUG I pass for here 00");
-                    return HexFiles.BASE_IN_0_OUT_0;
-                }
-                if (outputInPLC == OUT_0 && i == IN_1 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
-                    System.out.println("DEBUG I pass for here 01");
-                    return HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
-                }
-                if (outputInPLC == OUT_0 && i == IN_2 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
-                    System.out.println("DEBUG I pass for here 02");
-                    return HexFiles.setNewHexFile(HexFiles.IN_2_OUT_0, HexFiles.BASE_IN_0_OUT_0);
-                }
-                if (outputInPLC == OUT_0 && i == IN_3 && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1,2,3,4))) {
-                    System.out.println("DEBUG I pass for here 03");
-                    return HexFiles.setNewHexFile(HexFiles.IN_3_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+        if ((quantityOfInputsOnSameLineOfOutput == 1) && (index.size() == 1)) {
+            for (int i = 0; i<inputsPointsOnSameLineOfOutput.size(); i++) {
+                // 1 INPUT
+                // TODO: verificar a possibilidade de retirar a checagem por inputsPointsOnSameLineOfOutput.get(i) == 0
+                // nessa checagem eu verificao se o ponto de input está no slot 0,
+                // a entrada não precisa estar no slot 0, pode estar em outros slot, desde que tenha linhas completando
+                // TODO: verificar a quantiade de linhas, mudar a interface para não compilar logica com linhas incompletas
+                if (inputsPointsOnSameLineOfOutput.get(i) != NOT_FOUND_ON_SAME_LINE) {
+                    if (outputInPLC == OUT_0_IN_PLC && i == IN_0_IN_PLC && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1, 2, 3, 4))) {
+                        System.out.println("DEBUG I pass for here 00");
+                        newHexFile = HexFiles.BASE_IN_0_OUT_0;
+                    }
+                    if (outputInPLC == OUT_0_IN_PLC && i == IN_1_IN_PLC&& outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1, 2, 3, 4))) {
+                        System.out.println("DEBUG I pass for here 01");
+                        newHexFile = HexFiles.setNewHexFile(HexFiles.IN_1_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                    }
+                    if (outputInPLC == OUT_0_IN_PLC && i == IN_2_IN_PLC && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1, 2, 3, 4))) {
+                        System.out.println("DEBUG I pass for here 02");
+                        newHexFile = HexFiles.setNewHexFile(HexFiles.IN_2_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                    }
+                    if (outputInPLC == OUT_0_IN_PLC && i == IN_3_IN_PLC && outputSlot == SLOT_OUT_5 && inputsPointsOnSameLineOfOutput.get(i) == 0 && linesList.containsAll(Arrays.asList(1, 2, 3, 4))) {
+                        System.out.println("DEBUG I pass for here 03");
+                        newHexFile = HexFiles.setNewHexFile(HexFiles.IN_3_OUT_0, HexFiles.BASE_IN_0_OUT_0);
+                    }
                 }
             }
+        } else if ((quantityOfInputsOnSameLineOfOutput == 2) && (index.size() == 2)) {
+            System.out.println("DEBUG qty 2");
+            newHexFile = findHexFileForTwoInputsAndOneOutput(index);
+        } else if ((quantityOfInputsOnSameLineOfOutput == 3) && (index.size() == 3)) {
+            System.out.println("DEBUG qty 3");
+        } else if ((quantityOfInputsOnSameLineOfOutput == 4) && (index.size() == 4)) {
+            System.out.println("DEBUG qty 4");
+        }
+        return newHexFile;
+    }
+
+    private int quantityOfInputsOnSameLine(@NonNull List<Integer> inputsPointsOnSameLineOfOutput) {
+        int quantity = 0;
+        for (int point: inputsPointsOnSameLineOfOutput) {
+            if(point != NOT_FOUND_ON_SAME_LINE) {
+                quantity++;
+            }
+        }
+        return quantity;
+    }
+
+    private List<Integer> getIndexOfInputsOnSameLine(@NonNull List<Integer> inputsPointsOnSameLineOfOutput) {
+        List<Integer> index = new ArrayList<>();
+        for(int i=0; i<inputsPointsOnSameLineOfOutput.size(); i++) {
+            if(inputsPointsOnSameLineOfOutput.get(i) != NOT_FOUND_ON_SAME_LINE) {
+                index.add(i);
+            }
+        }
+        return index;
+    }
+
+    private int[] findHexFileForTwoInputsAndOneOutput(@NonNull List<Integer> indexOfInputs) {
+        if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_1_IN_PLC) {
+            return HexFiles.BASE_IN_0_OUT_0;
         }
         return HexFiles.BASE_IN_0_OUT_0;
     }
