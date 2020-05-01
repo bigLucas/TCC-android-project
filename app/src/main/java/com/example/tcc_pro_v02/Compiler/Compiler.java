@@ -135,6 +135,7 @@ public class Compiler {
             newHexFile = findHexFileForTwoInputsAndOneOutput(index);
         } else if ((quantityOfInputsOnSameLineOfOutput == 3) && (index.size() == 3)) {
             System.out.println("DEBUG qty 3");
+            newHexFile = findHexFileForThreeInputsAndOneOutput(index);
         } else if ((quantityOfInputsOnSameLineOfOutput == 4) && (index.size() == 4)) {
             System.out.println("DEBUG qty 4");
         }
@@ -161,10 +162,35 @@ public class Compiler {
         return index;
     }
 
+    // TODO: no totoal tem 6 casos, falta 3 ifs aqui
     private int[] findHexFileForTwoInputsAndOneOutput(@NonNull List<Integer> indexOfInputs) {
         if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_1_IN_PLC) {
-            return HexFiles.BASE_IN_0_OUT_0;
+            System.out.println("DEBUG IN_0 and IN_1");
+            return HexFiles.BASE_IN_0_IN_1_OUT_0;
+        } if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_2_IN_PLC) {
+            System.out.println("DEBUG IN_0 and IN_2");
+            return HexFiles.setNewHexFile(HexFiles.IN_0_IN_2_OUT_0, HexFiles.BASE_IN_0_IN_1_OUT_0);
+        } if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_3_IN_PLC) {
+            System.out.println("DEBUG IN_0 and IN_3");
+            return HexFiles.setNewHexFile(HexFiles.IN_0_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_OUT_0);
         }
-        return HexFiles.BASE_IN_0_OUT_0;
+        return new int[]{};
+    }
+
+    private int[] findHexFileForThreeInputsAndOneOutput(@NonNull List<Integer> indexOfInputs) {
+        if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_1_IN_PLC && indexOfInputs.get(2) == IN_2_IN_PLC) {
+            System.out.println("DEBUG IN_0, IN_1 and IN_2");
+            return HexFiles.BASE_IN_0_IN_1_IN_2_OUT_0;
+        } if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_1_IN_PLC && indexOfInputs.get(2) == IN_3_IN_PLC) {
+            System.out.println("DEBUG IN_0, IN_1 and IN_3");
+            return HexFiles.setNewHexFile(HexFiles.IN_0_IN_1_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_IN_2_OUT_0);
+        } if(indexOfInputs.get(0) == IN_0_IN_PLC && indexOfInputs.get(1) == IN_2_IN_PLC && indexOfInputs.get(2) == IN_3_IN_PLC) {
+            System.out.println("DEBUG IN_0, IN_2 and IN_3");
+            return HexFiles.setNewHexFile(HexFiles.IN_0_IN_2_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_IN_2_OUT_0);
+        } if(indexOfInputs.get(0) == IN_1_IN_PLC && indexOfInputs.get(1) == IN_2_IN_PLC && indexOfInputs.get(2) == IN_3_IN_PLC) {
+            System.out.println("DEBUG IN_1, IN_2 and IN_3");
+            return HexFiles.setNewHexFile(HexFiles.IN_1_IN_2_IN_3_OUT_0, HexFiles.BASE_IN_0_IN_1_IN_2_OUT_0);
+        }
+        return new int[]{};
     }
 }
