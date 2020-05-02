@@ -615,7 +615,9 @@ public class MainActivity extends AppCompatActivity
     private void loadLines(@NonNull String lines) {
         String[] points = lines.replaceFirst("lines:", "").replaceFirst("\n", "").split(",");
         for (String point: points) {
-            insertLine(Integer.parseInt(point), false);
+            if(!point.matches("")) {
+                insertLine(Integer.parseInt(point), false);
+            }
         }
     }
 
