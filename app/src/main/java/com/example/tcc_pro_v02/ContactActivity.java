@@ -50,24 +50,13 @@ public class ContactActivity extends AppCompatActivity {
             case 2: {
                 setContentView(R.layout.activity_new_coil);
 
-                Button bobinaNA = findViewById(R.id.button3);
-                Button bobinaNF = findViewById(R.id.button2);
+                Button bobinaNA = findViewById(R.id.button5);
                 bobinaNA.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent result = new Intent();
                         result.putExtra("outputNumber", numEntrada);
                         result.putExtra("contactType", 1);
-                        setResult(RESULT_OK, result);
-                        finish();
-                    }
-                });
-                bobinaNF.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent result = new Intent();
-                        result.putExtra("outputNumber", numEntrada);
-                        result.putExtra("contactType", 2);
                         setResult(RESULT_OK, result);
                         finish();
                     }

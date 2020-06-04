@@ -7,23 +7,17 @@
     android:padding="6dp">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar dados para ESP32"
-        android:textSize="18sp" />
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="status"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="send data"
+        android:text="Enviar dados"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -37,21 +31,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SEND" />
+            android:text="Enviar" />
 
         <Button
             android:id="@+id/button_find"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="FIND" />
+            android:text="Encontrar" />
 
         <Button
             android:id="@+id/button_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="LIST" />
+            android:text="Listar" />
     </LinearLayout>
 
 </LinearLayout>

@@ -43,16 +43,16 @@ public class SendActivity extends AppCompatActivity {
 
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
         if (btAdapter == null) {
-            statusMessage.setText("Que pena! Hardware Bluetooth não está funcionando :(");
+            statusMessage.setText("Que pena! Hardware Bluetooth não está funcionando");
         } else {
-            statusMessage.setText("Ótimo! Hardware Bluetooth está funcionando :)");
+            statusMessage.setText("Ótimo! Hardware Bluetooth está funcionando");
             if(!btAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, ENABLE_BLUETOOTH);
                 statusMessage.setText("Solicitando ativação do Bluetooth...");
 
             } else {
-                statusMessage.setText("Bluetooth já ativado :)");
+                statusMessage.setText("Bluetooth já ativado");
             }
         }
 
@@ -82,10 +82,10 @@ public class SendActivity extends AppCompatActivity {
 
         if(requestCode == ENABLE_BLUETOOTH) {
             if(resultCode == RESULT_OK) {
-                statusMessage.setText("Bluetooth ativado :D");
+                statusMessage.setText("Bluetooth ativado");
             }
             else {
-                statusMessage.setText("Bluetooth não ativado :(");
+                statusMessage.setText("Bluetooth não ativado");
             }
         }
         else if(requestCode == SELECT_PAIRED_DEVICE || requestCode == SELECT_DISCOVERED_DEVICE) {
@@ -97,24 +97,9 @@ public class SendActivity extends AppCompatActivity {
                 connect.start();
             }
             else {
-                statusMessage.setText("Nenhum dispositivo selecionado :(");
+                statusMessage.setText("Nenhum dispositivo selecionado");
             }
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     public void searchPairedDevices(View view) {
@@ -181,8 +166,7 @@ public class SendActivity extends AppCompatActivity {
 
     private int[] integersListToIntArray(@NonNull List<Integer> integers) {
         int[] ret = new int[integers.size()];
-        for (int i=0; i < ret.length; i++)
-        {
+        for (int i=0; i < ret.length; i++) {
             ret[i] = integers.get(i);
         }
         return ret;
@@ -196,12 +180,12 @@ public class SendActivity extends AppCompatActivity {
             byte[] data = bundle.getByteArray("data");
             String dataString= new String(data);
 
-            if(dataString.equals("---N"))
-                statusMessage.setText("Ocorreu um erro durante a conexão D:");
-            else if(dataString.equals("---S"))
-                statusMessage.setText("Conectado :D");
+            if(dataString.equals("---N")) {
+                statusMessage.setText("Ocorreu um erro durante a conexão");
+            } else if(dataString.equals("---S")) {
+                statusMessage.setText("Conectado");
+            }
             else {
-
                 textSpace.setText(new String(data));
             }
         }

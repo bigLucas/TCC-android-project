@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class ConnectionThread extends Thread{
-
     BluetoothSocket btSocket = null;
     BluetoothServerSocket btServerSocket = null;
     InputStream input = null;
@@ -27,7 +26,6 @@ public class ConnectionThread extends Thread{
     /*  Este construtor prepara o dispositivo para atuar como servidor.
      */
     public ConnectionThread() {
-
         this.server = true;
     }
 
@@ -36,7 +34,6 @@ public class ConnectionThread extends Thread{
     Bluetooth para o qual deve ser solicitada uma conexão.
      */
     public ConnectionThread(String btDevAddress) {
-
         this.server = false;
         this.btDevAddress = btDevAddress;
     }
@@ -221,9 +218,7 @@ public class ConnectionThread extends Thread{
     /*  Método utilizado pela Activity principal para encerrar a conexão
      */
     public void cancel() {
-
         try {
-
             running = false;
             btServerSocket.close();
             btSocket.close();

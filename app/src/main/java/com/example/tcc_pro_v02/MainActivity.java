@@ -676,15 +676,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_open) {
             Intent intent = new Intent(getApplicationContext(), OpenActivity.class);
             startActivityForResult(intent, OPEN_FILE_REQUEST);
-        } else if (id == R.id.nav_gallery) {
-
         } else if (id == R.id.nav_compile) {
 
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        }  else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(), SendActivity.class);
             intent.putExtra("hexLogic", this.hexLogic);
             startActivityForResult(intent, SEND_REQUEST);

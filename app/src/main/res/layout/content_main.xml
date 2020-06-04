@@ -446,7 +446,7 @@
             android:id="@+id/btn_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.25"
             android:text="Linha" />
 
         <Button
@@ -455,6 +455,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
             android:text="Bobina" />
+
+        <Button
+            android:id="@+id/button_delete"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Apagar" />
     </LinearLayout>
 
 
