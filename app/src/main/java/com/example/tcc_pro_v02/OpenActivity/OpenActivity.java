@@ -28,14 +28,8 @@ public class OpenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open);
         recyclerView = findViewById(R.id.recyclerView);
-//        String[] files2 = getApplicationContext().fileList();
-//        System.out.println("DEBUG: ");
-//        for (int i=0; i<files2.length; i++) {
-//            System.out.println(files2[i]);
-//        }
         this.files.addAll(Arrays.asList(getApplicationContext().fileList()));
         Adapter adapter = new Adapter(files);
-        System.out.println("DEBUG: " + files.size());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -52,9 +46,6 @@ public class OpenActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Arquivo " + file + " selecionado", Toast.LENGTH_SHORT).show();
                                 ManagementLogicFile managementLogicFile = new ManagementLogicFile(getApplicationContext());
                                 String content = managementLogicFile.read(file);
-                                // faltar devolver o content pra main activity
-                                // com o resultado na main posso preencher os slots
-//                                System.out.println("DEBUG: " + content);
                                 Intent result = new Intent();
                                 result.putExtra("content", content);
                                 setResult(RESULT_OK, result);

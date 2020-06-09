@@ -417,13 +417,6 @@ public class MainActivity extends AppCompatActivity
                 assert intentData != null;
                 String content = intentData.getString("content");
                 loadDiagram(content);
-                Compiler compiler = new Compiler(content);
-                this.hexLogic = compiler.compileLogic();
-                if(this.hexLogic.length == 0) {
-                    Toast.makeText(getApplicationContext(),"Lógica não compilada", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(),"Lógica compilada com sucesso", Toast.LENGTH_SHORT).show();
-                }
             }
         }
     }
@@ -648,27 +641,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //ESSA FUNÇÃO CUIDA DOS CLICKS NA ACTION BAR
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -677,7 +657,15 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), OpenActivity.class);
             startActivityForResult(intent, OPEN_FILE_REQUEST);
         } else if (id == R.id.nav_compile) {
-
+            ManagementLogicFile managementLogicFile = new ManagementLogicFile(getApplicationContext());
+            String logic = managementLogicFile.getLogicalDiagramContents(this.slots, this.statusSlot);
+            Compiler compiler = new Compiler(logic);
+            this.hexLogic = compiler.compileLogic();
+            if(this.hexLogic.length == 0) {
+                Toast.makeText(getApplicationContext(),"Lógica não compilada", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(),"Lógica compilada com sucesso", Toast.LENGTH_SHORT).show();
+            }
         }  else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(), SendActivity.class);
             intent.putExtra("hexLogic", this.hexLogic);
