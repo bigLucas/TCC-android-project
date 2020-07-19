@@ -42,6 +42,11 @@ public class MainActivity extends AppCompatActivity
     // TextView com linha horizontal 3
     // TextView com bobina NA 4
     // TextView com bobina NF 5
+    static final int NO_COMPONENT = 0;
+    static final int CONTACT_NORMAL_OPEN = 1;
+    static final int CONTACT_NORMAL_CLOSED = 2;
+    static final int LINE = 3;
+    static final int COIL = 4;
 
     private ArrayList<TextView> slots = new ArrayList<>();
     private int[] statusSlot = new int[36];
@@ -164,6 +169,18 @@ public class MainActivity extends AppCompatActivity
                 }
                 managementLogicFile.save(filename.getText().toString(), slots, statusSlot);
                 Toast.makeText(getApplicationContext(), "Arquivo salvo!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Delete button
+        Button deleteButton = findViewById(R.id.button_delete);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                statusSlot[ladderMatrix.getSelectorPosi()] = NO_COMPONENT;
+                slots.get(ladderMatrix.getSelectorPosi()).setBackgroundResource(R.drawable.no_contact);
+                slots.get(ladderMatrix.getSelectorPosi()).setText("");
+                changePosiOfSelector(ladderMatrix.getSelectorPosi() + 1);
             }
         });
 
